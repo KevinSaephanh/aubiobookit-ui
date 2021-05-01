@@ -1,0 +1,33 @@
+Features:
+    User registration/login
+    Profile
+        Profile picture
+        Tabs:
+            Info - about and interests section
+            PDFs/Audiobooks - list of PDFs and audiobooks
+                Paginated
+                Sortable (alphabetical and date added)
+                Search?
+                Format: Title         PDF/audiobook/play button icons
+    Convert pdf (limit size) to audiobook (.mp3)
+    Play audiobook
+        Continue playing from where user left off
+    
+Models:
+    class Profile(models.Model):
+        user = models.OneToOneField(User, on_delete=models.CASCADE)
+        img = models.ImageField(upload_to='userimg/', default='userimg/avatar.png')
+        bio = models.TextField(max_length=300)
+        interest = models.ArrayField(
+            models.TextField(max_length=100),
+            size=10
+        )
+        created_at = models.DateTimeField(auto_now=True)
+        updated_at = models.DateTimeField(auto_now=True)
+        books = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True)
+    class Book(models.Model):
+        pdf = models.ImageField(upload_to='pdf')
+        audiobook = models.FileField(upload_to='audiobooks')
+        last_read_time = models.FloatField()
+        created_at = models.DateTimeField(auto_now=True)
+        updated_at = models.DateTimeField(auto_now=True)
