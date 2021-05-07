@@ -1,25 +1,23 @@
 import React from "react";
-import { Container, Navbar, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { BrowserRouter as Router } from "react-router-dom";
-import "./App.css";
 import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
 import Routes from "./routes";
+import "./App.css";
+import AuthProvider from "./store/providers/AuthProvider";
 
 function App() {
   return (
-    <Router>
-      <Container>
-        <Row>
-          <Navbar />
-        </Row>
-        <Row>
+    <AuthProvider>
+      <Router>
+        <Container fluid>
+          <Header />
           <Routes />
-        </Row>
-        <Row>
           <Footer />
-        </Row>
-      </Container>
-    </Router>
+        </Container>
+      </Router>
+    </AuthProvider>
   );
 }
 

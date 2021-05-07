@@ -12,6 +12,14 @@ Features:
     Convert pdf (limit size) to audiobook (.mp3)
     Play audiobook
         Continue playing from where user left off
+
+Pages:
+    Home
+    Register/Login (or make it a modal)
+    Confirm account
+    Reset Password
+    Profile
+    Edit Profile
     
 Models:
     class Profile(models.Model):
@@ -31,3 +39,4 @@ Models:
         last_read_time = models.FloatField()
         created_at = models.DateTimeField(auto_now=True)
         updated_at = models.DateTimeField(auto_now=True)
+
