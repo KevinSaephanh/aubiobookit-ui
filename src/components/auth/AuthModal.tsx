@@ -1,5 +1,6 @@
 import React, { ChangeEvent, MouseEvent, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
+import InputUtils from "../../utils/InputUtils";
 import "./AuthModal.scss";
 
 const AuthModal = (props: any) => {
@@ -102,23 +103,38 @@ const AuthModal = (props: any) => {
   };
 
   const handleSubmit = (e: MouseEvent<HTMLElement>) => {
-    console.log("NO");
     e.preventDefault();
   };
 
-  // Check if all form fields are filled
-  const isButtonDisabled = (): boolean => {
+  const validateForm = () => {};
+
+  // Check if all form fields are filled; if not, disable button
+  const isButtonDisabled = () => {
     if (modalType === "login") {
-      return username === "" && password === "";
+      return email === "" || password === "";
     } else {
       return (
-        username === "" &&
-        email === "" &&
-        password === "" &&
+        username === "" ||
+        email === "" ||
+        password === "" ||
         confirmPassword === ""
       );
     }
   };
+
+  const resetForm = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  };
+
+  const closeModal = () => {
+    resetForm();
+    props.onHide();
+  };
+
+  console.log(InputUtils.hasBadWord("B1111tch duck me"));
 
   return (
     <Modal
@@ -146,7 +162,7 @@ const AuthModal = (props: any) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" onClick={props.onHide}>
+        <Button variant="danger" onClick={() => closeModal()}>
           Close
         </Button>
       </Modal.Footer>

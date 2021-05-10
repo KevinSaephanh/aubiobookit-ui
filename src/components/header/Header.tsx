@@ -3,7 +3,7 @@ import { Navbar, Nav, NavDropdown, Dropdown } from "react-bootstrap";
 import AuthModal from "../auth/AuthModal";
 import { AuthContext } from "./../../store/providers/AuthProvider";
 import "./Header.scss";
-
+import Image from "../../assets/defaultProfilePic.png";
 const Header = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalType, setModalType] = useState("");
@@ -22,7 +22,7 @@ const Header = () => {
       <Nav>
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            <img src="../../assets/defaultProfilePic.png" alt="" />
+            <img src={Image} alt="" />
           </Dropdown.Toggle>
 
           <Dropdown.Menu className="dropdown-menu-right">
