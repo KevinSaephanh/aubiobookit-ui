@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { BrowserRouter as Router } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Routes from "./routes";
-import "./App.css";
-import AuthProvider from "./store/providers/AuthProvider";
+import { AuthProvider } from "./store/providers/AuthProvider";
+import "./App.scss";
 
 function App() {
   return (

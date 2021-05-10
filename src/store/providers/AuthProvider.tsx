@@ -2,35 +2,38 @@ import { createContext, useReducer } from "react";
 import * as ACTIONS from "../actions/actions";
 import { AuthReducer, authState } from "../reducers/authReducer";
 
-const AuthContext = createContext({} as any);
+export const AuthContext = createContext({
+  authState: authState,
+  handleSignup: () => {},
+  handleLogin: () => {},
+  handleLogout: () => {},
+});
 
-const AuthProvider = ({ children }: any) => {
-  const [authReducer, dispatchAuthReducer] = useReducer(AuthReducer, authState);
+export const AuthProvider = ({ children }: any) => {
+  const [state, dispatch] = useReducer(AuthReducer, authState);
 
-  const handleRegistration = (): void => {
-    dispatchAuthReducer(ACTIONS.registration_success());
+  const handleSignup = (): void => {
+    dispatch(ACTIONS.signup_success());
   };
 
   const handleLogin = (): void => {
-    dispatchAuthReducer(ACTIONS.login_success());
+    dispatch(ACTIONS.login_success());
   };
 
   const handleLogout = (): void => {
-    dispatchAuthReducer(ACTIONS.logout());
+    dispatch(ACTIONS.logout());
   };
 
   return (
     <AuthContext.Provider
       value={{
-        authState: authReducer,
-        handleUserRegistration: () => handleRegistration(),
-        handleUserLogin: () => handleLogin(),
-        handleUserLogout: () => handleLogout(),
+        authState: state,
+        handleSignup: () => handleSignup(),
+        handleLogin: () => handleLogin(),
+        handleLogout: () => handleLogout(),
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;

@@ -1,18 +1,19 @@
 import * as ACTION_TYPES from "../actions/action_types";
+import IUser from "./../../models/IUser";
 
 export const authState = {
-  user: {},
+  user: {} as IUser,
   isAuth: false,
 };
 
 export const AuthReducer = (state = authState, action: any) => {
   switch (action.type) {
-    case ACTION_TYPES.REGISTRATION_SUCCESS:
+    case ACTION_TYPES.SIGNUP_SUCCESS:
       return {
         ...state,
         isAuth: true,
       };
-    case ACTION_TYPES.REGISTRATION_FAILURE:
+    case ACTION_TYPES.SIGNUP_FAILURE:
       return {
         ...state,
         isAuth: false,

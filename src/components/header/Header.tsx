@@ -1,33 +1,75 @@
-import React from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Navbar, Nav, NavDropdown, Dropdown } from "react-bootstrap";
+import AuthModal from "../auth/AuthModal";
+import { AuthContext } from "./../../store/providers/AuthProvider";
+import "./Header.scss";
 
 const Header = () => {
+  const [modalShow, setModalShow] = useState(false);
+  const [modalType, setModalType] = useState("");
+  const auth = useContext(AuthContext);
+  const { isAuth } = auth.authState;
+
+  console.log(isAuth);
+
+  const setModalContent = (authType: string) => {
+    setModalShow(true);
+    setModalType(authType);
+  };
+
   const getAuthNavs = () => {
     return (
       <Nav>
-        <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.3">Logout</NavDropdown.Item>
-        </NavDropdown>
-        <Nav.Link href="#deets">More deets</Nav.Link>
-        <Nav.Link eventKey={2} href="#memes">
-          Daadsad
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <img src="../../assets/defaultProfilePic.png" alt="" />
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu className="dropdown-menu-right">
+            <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
+            <NavDropdown.Divider />
+            <Dropdown.Item href="#/action-3">Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Nav>
+    );
+  };
+
+  const getDefaultNavs = () => {
+    return (
+      <Nav>
+        <Nav.Link href="" onClick={() => setModalContent("login")}>
+          Login
+        </Nav.Link>
+        <Nav.Link href="" onClick={() => setModalContent("signup")}>
+          Signup
         </Nav.Link>
       </Nav>
     );
   };
 
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-      <Navbar.Brand href="/">Audiobook-It</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto" />
-        {getAuthNavs()}
-      </Navbar.Collapse>
-    </Navbar>
+    <header>
+      {/* Navbar content */}
+      <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+        <Navbar.Brand href="/">
+          <i className="fas fa-book" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto" />
+          {isAuth ? getAuthNavs() : getDefaultNavs()}
+        </Navbar.Collapse>
+      </Navbar>
+
+      {/* Auth Modal */}
+      <AuthModal
+        show={modalShow}
+        modalType={modalType}
+        onHide={() => setModalShow(false)}
+      />
+    </header>
   );
 };
 

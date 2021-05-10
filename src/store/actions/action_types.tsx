@@ -1,6 +1,6 @@
-// Registration actions
-export const REGISTRATION_SUCCESS = "REGISTRATION_SUCCESS";
-export const REGISTRATION_FAILURE = "REGISTRATION_FAILURE";
+// Signup actions
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
 
 // Login actions
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";

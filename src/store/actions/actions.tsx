@@ -1,14 +1,14 @@
 import * as ACTION_TYPES from "./action_types";
 
-export const registration_success = () => {
+export const signup_success = () => {
   return {
-    type: ACTION_TYPES.REGISTRATION_SUCCESS,
+    type: ACTION_TYPES.SIGNUP_SUCCESS,
   };
 };
 
-export const registration_failure = () => {
+export const signup_failure = () => {
   return {
-    type: ACTION_TYPES.REGISTRATION_FAILURE,
+    type: ACTION_TYPES.SIGNUP_FAILURE,
   };
 };
 
