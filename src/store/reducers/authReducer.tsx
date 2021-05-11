@@ -1,34 +1,40 @@
-import * as ACTION_TYPES from "../actions/action_types";
 import IUser from "./../../models/IUser";
+import { AuthActions } from "../actions/actionTypes";
 
+interface IAuthState {
+  user: IUser;
+  isAuth: boolean;
+}
+
+// Initial state for auth
 export const authState = {
   user: {} as IUser,
   isAuth: false,
-};
+} as IAuthState;
 
 export const AuthReducer = (state = authState, action: any) => {
   switch (action.type) {
-    case ACTION_TYPES.SIGNUP_SUCCESS:
+    case AuthActions.SIGNUP_SUCCESS:
       return {
         ...state,
         isAuth: true,
       };
-    case ACTION_TYPES.SIGNUP_FAILURE:
+    case AuthActions.SIGNUP_FAILURE:
       return {
         ...state,
         isAuth: false,
       };
-    case ACTION_TYPES.LOGIN_SUCCESS:
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
+    case AuthActions.LOGIN_SUCCESS:
       return {
         ...state,
+        user: action.user,
         isAuth: true,
       };
-    case ACTION_TYPES.LOGIN_FAILURE:
-    case ACTION_TYPES.LOGOUT:
-      localStorage.clear();
+    case AuthActions.LOGIN_FAILURE:
+    case AuthActions.LOGOUT:
       return {
         ...state,
+        user: {} as IUser,
         isAuth: false,
       };
     default:

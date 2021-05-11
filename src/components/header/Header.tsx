@@ -1,16 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Navbar, Nav, NavDropdown, Dropdown } from "react-bootstrap";
 import AuthModal from "../auth/AuthModal";
 import { AuthContext } from "./../../store/providers/AuthProvider";
-import "./Header.scss";
 import Image from "../../assets/defaultProfilePic.png";
-const Header = () => {
+import "./Header.scss";
+
+const Header: FC = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalType, setModalType] = useState("");
   const auth = useContext(AuthContext);
   const { isAuth } = auth.authState;
 
-  console.log(isAuth);
+  console.log("IS AUTH? : " + isAuth);
 
   const setModalContent = (authType: string) => {
     setModalShow(true);
@@ -29,7 +30,9 @@ const Header = () => {
             <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
             <NavDropdown.Divider />
-            <Dropdown.Item href="#/action-3">Logout</Dropdown.Item>
+            <Dropdown.Item href="" onClick={() => logout()}>
+              Logout
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Nav>
@@ -47,6 +50,11 @@ const Header = () => {
         </Nav.Link>
       </Nav>
     );
+  };
+
+  const logout = () => {
+    auth.handleLogout();
+    window.location.href = "/";
   };
 
   return (

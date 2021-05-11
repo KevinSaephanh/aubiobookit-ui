@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-const ProfileEdit = () => {
+const ProfileEdit: FC = () => {
   return <h1>HELLO PROFILE EDIT</h1>;
 };
 

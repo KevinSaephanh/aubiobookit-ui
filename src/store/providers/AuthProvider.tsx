@@ -1,11 +1,13 @@
 import { createContext, useReducer } from "react";
-import * as ACTIONS from "../actions/actions";
-import { AuthReducer, authState } from "../reducers/authReducer";
+import { ILogin } from "../../models/IAuth";
+import * as ACTIONS from "../actions/authActions";
+import { AuthReducer } from "../reducers/authReducer";
+import { authState } from "./../reducers/authReducer";
 
 export const AuthContext = createContext({
   authState: authState,
   handleSignup: () => {},
-  handleLogin: () => {},
+  handleLogin: (data: ILogin) => {},
   handleLogout: () => {},
 });
 
@@ -16,8 +18,9 @@ export const AuthProvider = ({ children }: any) => {
     dispatch(ACTIONS.signup_success());
   };
 
-  const handleLogin = (): void => {
-    dispatch(ACTIONS.login_success());
+  const handleLogin = (data: ILogin): void => {
+    console.log("DATA: " + JSON.stringify(data));
+    dispatch(ACTIONS.login_success(data));
   };
 
   const handleLogout = (): void => {
@@ -29,7 +32,7 @@ export const AuthProvider = ({ children }: any) => {
       value={{
         authState: state,
         handleSignup: () => handleSignup(),
-        handleLogin: () => handleLogin(),
+        handleLogin: (data: ILogin) => handleLogin(data),
         handleLogout: () => handleLogout(),
       }}
     >

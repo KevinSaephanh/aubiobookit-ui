@@ -1,13 +1,27 @@
-import React, { ChangeEvent, MouseEvent, useState } from "react";
+import React, {
+  ChangeEvent,
+  FC,
+  MouseEvent,
+  useState,
+  useContext,
+} from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import InputUtils from "../../utils/InputUtils";
+import { ILogin } from "../../models/IAuth";
+import { AuthContext } from "../../store/providers/AuthProvider";
 import "./AuthModal.scss";
 
-const AuthModal = (props: any) => {
+interface ModalProps {
+  show: boolean;
+  modalType: string;
+  onHide: () => void;
+}
+
+const AuthModal: FC<ModalProps> = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const auth = useContext(AuthContext);
   const { modalType } = props;
 
   const getSignupForm = () => {
@@ -104,6 +118,14 @@ const AuthModal = (props: any) => {
 
   const handleSubmit = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
+
+    if (modalType === "login") {
+      const data: ILogin = {
+        email,
+        password,
+      };
+      auth.handleLogin(data);
+    }
   };
 
   const validateForm = () => {};
@@ -133,8 +155,6 @@ const AuthModal = (props: any) => {
     resetForm();
     props.onHide();
   };
-
-  console.log(InputUtils.hasBadWord("B1111tch duck me"));
 
   return (
     <Modal
