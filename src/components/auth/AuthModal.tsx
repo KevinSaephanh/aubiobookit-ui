@@ -6,9 +6,10 @@ import React, {
   useContext,
 } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import { ILogin } from "../../models/IAuth";
 import { AuthContext } from "../../store/providers/AuthProvider";
+import { useForm } from "react-hook-form";
 import "./AuthModal.scss";
+import InputUtils from "../../utils/InputUtils";
 
 interface ModalProps {
   show: boolean;
@@ -16,11 +17,21 @@ interface ModalProps {
   onHide: () => void;
 }
 
+interface IFormInput {
+  username?: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
+
 const AuthModal: FC<ModalProps> = (props) => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const auth = useContext(AuthContext);
   const { modalType } = props;
 
@@ -30,53 +41,33 @@ const AuthModal: FC<ModalProps> = (props) => {
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control
-            value={username}
             type="text"
-            minLength={5}
-            maxLength={20}
             placeholder="Enter username"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setUsername(e.target.value)
-            }
+            {...register("username")}
           />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            value={email}
             type="email"
-            minLength={7}
-            maxLength={50}
             placeholder="Enter email"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
-            }
+            {...register("email")}
           />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            value={password}
             type="password"
-            minLength={7}
-            maxLength={100}
             placeholder="Password"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value)
-            }
+            {...register("password")}
           />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
-            value={confirmPassword}
             type="password"
-            minLength={7}
-            maxLength={100}
             placeholder="Confirm password"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setConfirmPassword(e.target.value)
-            }
+            {...register("confirmPassword")}
           />
         </Form.Group>
       </div>
@@ -89,93 +80,65 @@ const AuthModal: FC<ModalProps> = (props) => {
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            value={email}
             type="email"
-            minLength={7}
-            maxLength={50}
             placeholder="Enter email"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
-            }
+            {...register("email")}
           />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            value={password}
             type="password"
-            minLength={7}
-            maxLength={100}
             placeholder="Password"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value)
-            }
+            {...register("password")}
           />
         </Form.Group>
       </div>
     );
   };
 
-  const handleSubmit = (e: MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-
+  const onSubmit = (data: IFormInput) => {
+    console.log("DATA: " + JSON.stringify(data));
+    console.log("VALID: " + InputUtils.isValidPassword(data.password));
     if (modalType === "login") {
-      const data: ILogin = {
-        email,
-        password,
+      const credentials: IFormInput = {
+        email: data.email,
+        password: data.password,
       };
-      auth.handleLogin(data);
+      // auth.handleLogin(credentials);
+      resetForm();
+    }
+
+    if (modalType === "signup") {
+      resetForm();
     }
   };
 
   const validateForm = () => {};
 
-  // Check if all form fields are filled; if not, disable button
-  const isButtonDisabled = () => {
-    if (modalType === "login") {
-      return email === "" || password === "";
-    } else {
-      return (
-        username === "" ||
-        email === "" ||
-        password === "" ||
-        confirmPassword === ""
-      );
-    }
-  };
-
   const resetForm = () => {
-    setUsername("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
+    reset({ username: "", email: "", password: "", confirmPassword: "" });
   };
 
   const closeModal = () => {
-    resetForm();
+    // resetForm();
     props.onHide();
   };
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {modalType}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           {modalType === "login" ? getLoginForm() : getSignupForm()}
           <Button
             variant="success"
             type="submit"
-            onClick={(e: MouseEvent<HTMLElement>) => handleSubmit(e)}
-            disabled={isButtonDisabled()}
+            onClick={handleSubmit(onSubmit)}
           >
             Submit
           </Button>

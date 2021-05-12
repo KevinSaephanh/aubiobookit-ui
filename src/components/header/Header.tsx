@@ -20,7 +20,7 @@ const Header: FC = () => {
 
   const getAuthNavs = () => {
     return (
-      <Nav>
+      <Nav className="justify-content-center">
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             <img src={Image} alt="" />
@@ -41,7 +41,7 @@ const Header: FC = () => {
 
   const getDefaultNavs = () => {
     return (
-      <Nav>
+      <Nav className="justify-content-center">
         <Nav.Link href="" onClick={() => setModalContent("login")}>
           Login
         </Nav.Link>

@@ -1,5 +1,6 @@
 .navbar {
-  padding-right: 25px;
+  padding-right: 25px !important;
+  padding-left: 25px !important;
 }
 
 .navbar-brand {
@@ -23,8 +24,8 @@
   border-color: transparent !important;
 
   img {
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
     margin-right: 5px;
   }

@@ -1,11 +1,6 @@
-export interface ILogin {
+export interface IFormInput {
+  username?: string;
   email: string;
   password: string;
-}
-
-export interface ISignup {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  confirmPassword?: string;
 }
