@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { Navbar, Nav, NavDropdown, Dropdown } from "react-bootstrap";
 import AuthModal from "../auth/AuthModal";
 import { AuthContext } from "./../../store/providers/AuthProvider";

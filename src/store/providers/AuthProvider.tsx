@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import useFetch from "../../customHooks/useFetch";
 import IFormInput from "../../models/IAuth";
 import * as ACTIONS from "../actions/authActions";
 import { AuthReducer } from "../reducers/authReducer";
@@ -13,6 +14,7 @@ export const AuthContext = createContext({
 
 export const AuthProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AuthReducer, authState);
+  const { data, loading } = useFetch("");
 
   const handleSignup = (): void => {
     dispatch(ACTIONS.signup_success());

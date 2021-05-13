@@ -1,11 +1,4 @@
-import React, {
-  ChangeEvent,
-  FC,
-  MouseEvent,
-  useState,
-  useContext,
-  useEffect,
-} from "react";
+import { FC, useContext } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { AuthContext } from "../../store/providers/AuthProvider";
 import { useForm } from "react-hook-form";
@@ -24,18 +17,10 @@ const AuthModal: FC<ModalProps> = (props) => {
     register,
     handleSubmit,
     reset,
-    getValues,
     formState: { errors },
   } = useForm<IFormInput>();
   const { modalType } = props;
   const auth = useContext(AuthContext);
-  const [modalTypeInUse, setModalTypeInUse] = useState<string>(modalType);
-  const [footerMessage, setFooterMessage] = useState<string>("");
-
-  useEffect(() => {
-    if (modalTypeInUse === "login") setFooterMessage("Create Account");
-    if (modalTypeInUse === "signup") setFooterMessage("Login");
-  }, [modalTypeInUse]);
 
   const getSignupForm = () => {
     return (
@@ -130,12 +115,12 @@ const AuthModal: FC<ModalProps> = (props) => {
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {modalTypeInUse}
+          {modalType}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          {modalTypeInUse === "login" ? getLoginForm() : getSignupForm()}
+          {modalType === "login" ? getLoginForm() : getSignupForm()}
           <Button
             variant="success"
             type="submit"
@@ -146,7 +131,6 @@ const AuthModal: FC<ModalProps> = (props) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <span>{footerMessage}</span>
         <Button variant="danger" onClick={() => closeModal()}>
           Close
         </Button>

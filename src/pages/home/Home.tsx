@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 const Home: FC = () => {
   return <h1>HELLO WORLD</h1>;
