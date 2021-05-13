@@ -4,24 +4,19 @@ import React, {
   MouseEvent,
   useState,
   useContext,
+  useEffect,
 } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { AuthContext } from "../../store/providers/AuthProvider";
 import { useForm } from "react-hook-form";
-import "./AuthModal.scss";
 import InputUtils from "../../utils/InputUtils";
+import IFormInput from "../../models/IAuth";
+import "./AuthModal.scss";
 
 interface ModalProps {
   show: boolean;
   modalType: string;
   onHide: () => void;
-}
-
-interface IFormInput {
-  username?: string;
-  email: string;
-  password: string;
-  confirmPassword?: string;
 }
 
 const AuthModal: FC<ModalProps> = (props) => {
@@ -32,8 +27,15 @@ const AuthModal: FC<ModalProps> = (props) => {
     getValues,
     formState: { errors },
   } = useForm<IFormInput>();
-  const auth = useContext(AuthContext);
   const { modalType } = props;
+  const auth = useContext(AuthContext);
+  const [modalTypeInUse, setModalTypeInUse] = useState<string>(modalType);
+  const [footerMessage, setFooterMessage] = useState<string>("");
+
+  useEffect(() => {
+    if (modalTypeInUse === "login") setFooterMessage("Create Account");
+    if (modalTypeInUse === "signup") setFooterMessage("Login");
+  }, [modalTypeInUse]);
 
   const getSignupForm = () => {
     return (
@@ -77,12 +79,12 @@ const AuthModal: FC<ModalProps> = (props) => {
   const getLoginForm = () => {
     return (
       <div>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+        <Form.Group controlId="formBasicUsername">
+          <Form.Label>Username</Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter email"
-            {...register("email")}
+            type="text"
+            placeholder="Enter username"
+            {...register("username")}
           />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
@@ -102,10 +104,10 @@ const AuthModal: FC<ModalProps> = (props) => {
     console.log("VALID: " + InputUtils.isValidPassword(data.password));
     if (modalType === "login") {
       const credentials: IFormInput = {
-        email: data.email,
+        username: data.username,
         password: data.password,
       };
-      // auth.handleLogin(credentials);
+      auth.handleLogin(credentials);
       resetForm();
     }
 
@@ -114,14 +116,13 @@ const AuthModal: FC<ModalProps> = (props) => {
     }
   };
 
-  const validateForm = () => {};
-
+  // Reset all inputs
   const resetForm = () => {
     reset({ username: "", email: "", password: "", confirmPassword: "" });
   };
 
   const closeModal = () => {
-    // resetForm();
+    resetForm();
     props.onHide();
   };
 
@@ -129,12 +130,12 @@ const AuthModal: FC<ModalProps> = (props) => {
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {modalType}
+          {modalTypeInUse}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          {modalType === "login" ? getLoginForm() : getSignupForm()}
+          {modalTypeInUse === "login" ? getLoginForm() : getSignupForm()}
           <Button
             variant="success"
             type="submit"
@@ -145,6 +146,7 @@ const AuthModal: FC<ModalProps> = (props) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        <span>{footerMessage}</span>
         <Button variant="danger" onClick={() => closeModal()}>
           Close
         </Button>

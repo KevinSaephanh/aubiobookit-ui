@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { IFormInput } from "../../models/IAuth";
+import IFormInput from "../../models/IAuth";
 import * as ACTIONS from "../actions/authActions";
 import { AuthReducer } from "../reducers/authReducer";
 import { authState } from "./../reducers/authReducer";
