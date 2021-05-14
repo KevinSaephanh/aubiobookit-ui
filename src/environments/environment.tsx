@@ -1,5 +1,7 @@
-export const LOCALHOST = "http://localhost:8080";
-export const PROD = "";
+export const getBaseUrl = () => {
+  if (process.env.NODE_ENV === "development") return "http://localhost:8080";
+  if (process.env.NODE_ENV === "production") return "https://";
+};
 
 export enum AuthEndpoints {
   Register = "",
