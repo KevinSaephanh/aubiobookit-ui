@@ -1,0 +1,30 @@
+.book-pages {
+  height: 500px;
+  width: 750px;
+  perspective: 960px;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.book-page {
+  color: white;
+  height: 100%;
+}
+
+.book-page-1 {
+  background: #f44336;
+}
+
+.book-page-2 {
+  background: #4caf50;
+}
+
+.book-page-3 {
+  background: #2196f3;
+}
+
+.book-page-4 {
+  background: #ff9800;
+}
