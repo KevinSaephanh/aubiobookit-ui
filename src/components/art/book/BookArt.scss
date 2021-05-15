@@ -6,25 +6,67 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+.book-page-wrapper {
+  color: black;
+  height: 100%;
+  background: #fafafa;
+  background-image: linear-gradient(
+    90deg,
+    rgba(227, 227, 227, 1) 0%,
+    rgba(247, 247, 247, 0) 18%
+  );
+  display: flex;
 }
 
 .book-page {
-  color: white;
+  width: 50%;
+
+  &:nth-child(odd) {
+    border-right: 2px solid rgba(0, 0, 0, 0.123);
+  }
+
+  p {
+    font-size: 12px;
+    font-family: "Cormorant Garamond", serif;
+    width: 85%;
+    height: 80%;
+  }
+
+  strong {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding-top: 15px;
+  }
+
+  h3,
+  h5 {
+    text-align: center;
+  }
+}
+
+.contents {
+  display: block;
+}
+
+.contents-list {
+  list-style-type: none;
   height: 100%;
+  width: 100%;
+  padding-top: 50px;
 }
 
-.book-page-1 {
-  background: #f44336;
-}
+.content-item {
+  padding-top: 5px;
+  margin: 0 auto !important;
 
-.book-page-2 {
-  background: #4caf50;
-}
-
-.book-page-3 {
-  background: #2196f3;
-}
-
-.book-page-4 {
-  background: #ff9800;
+  .col {
+    &:first-child {
+      opacity: 0.5;
+    }
+  }
 }
