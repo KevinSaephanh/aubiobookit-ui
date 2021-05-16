@@ -1,4 +1,4 @@
-import IUser from "./../../models/IUser";
+import IUser from "./../../shared/models/IUser";
 import { AuthActions } from "../actions/actionTypes";
 
 interface IAuthState {

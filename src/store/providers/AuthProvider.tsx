@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
-import useFetch from "../../customHooks/useFetch";
-import IFormInput from "../../models/IAuth";
+import useFetch from "../../shared/hooks/useFetch";
+import IFormInput from "../../shared/models/IAuth";
 import * as ACTIONS from "../actions/authActions";
 import { AuthReducer } from "../reducers/authReducer";
 import { authState } from "./../reducers/authReducer";

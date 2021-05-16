@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { contents } from "./BookInfo";
 // @ts-ignore
 import FlippingPages from "flipping-pages";
@@ -29,65 +29,86 @@ const BookArt = () => {
       >
         <div className="book-page-wrapper">
           <section className="book-page" />
-          <section className="book-page">
+          <section className="book-page title-page">
             <h3>Title Here</h3>
             <h5>By John Doe</h5>
           </section>
         </div>
         <div className="book-page-wrapper">
           <section className="book-page contents">
-            {/* <h5>CONTENTS</h5> */}
+            <h5>CONTENTS</h5>
             <ul className="contents-list">
-              {contents.map((chapter, key) => {
-                return (
-                  <Row key={key} className="content-item">
-                    <Col>{chapter.ch}</Col>
-                    <Col>{chapter.title}</Col>
-                    <Col>{chapter.page}</Col>
-                  </Row>
-                );
-              })}
+              <Table responsive>
+                <tbody>
+                  {contents.map((chapter, key) => {
+                    return (
+                      <tr className="content-item" key={key}>
+                        <td className="content-item-chapter">{chapter.ch}</td>
+                        <td className="content-item-title">{chapter.title}</td>
+                        <td className="content-item-page">{chapter.page}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
             </ul>
           </section>
           <section className="book-page">
             <p>
-              Sed at rutrum dui. Ut id tristique magna. Praesent libero dolor,
-              iaculis et euismod id, faucibus non purus. Nullam ac arcu purus.
-              Cras ultricies risus ut aliquam placerat. Sed vel efficitur
+              <span>3</span>
+              <div className="chapter-header">
+                <h5>{contents[0].ch}</h5>
+                <h6>{contents[0].title}</h6>
+              </div>
+              &emsp; Sed at rutrum dui. Ut id tristique magna. Praesent libero
+              dolor, iaculis et euismod id, faucibus non purus. Nullam ac arcu
+              purus. Cras ultricies risus ut aliquam placerat. Sed vel efficitur
               mauris. Sed vel ante in quam hendrerit consequat at id dolor.
-              Aliquam rutrum lorem sed nisl molestie, ut cursus nunc vulputate.
-              Morbi congue ipsum erat, in vehicula justo dignissim nec.
-              Suspendisse aliquam risus vel eros lobortis, sed condimentum sem
-              vehicula. Nunc molestie nisl id turpis rutrum sollicitudin.
+              <br />
+              &emsp; Nam lorem elit, sagittis pellentesque urna nec, malesuada
+              dictum ex. Curabitur in lectus ullamcorper nibh rhoncus porta.
+              Proin eu ultrices enim. Pellentesque eget facilisis urna. Proin
+              ultricies viverra odio, quis ullamcorper enim accumsan sed.
             </p>
           </section>
         </div>
         <div className="book-page-wrapper">
           <section className="book-page">
+            <span>4</span>
             <p>
-              Pellentesque id dui quis velit pellentesque elementum nec ac
-              neque. Fusce quis dapibus sapien, ut bibendum ligula. Ut vel arcu
-              vel metus scelerisque malesuada vel quis felis. In faucibus ligula
-              a blandit rhoncus. Donec at nisi sodales, rhoncus enim ac,
+              &emsp; Pellentesque id dui quis velit pellentesque elementum nec
+              ac neque. Fusce quis dapibus sapien, ut bibendum ligula. Ut vel
+              arcu vel metus scelerisque malesuada vel quis felis. In faucibus
+              ligula a blandit rhoncus. Donec at nisi sodales, rhoncus enim ac,
               consectetur erat. Mauris ipsum dolor, pulvinar in eros sit amet,
               malesuada egestas lectus. Duis dictum nisi ut ante consectetur,
-              eget tincidunt elit eleifend. Sed hendrerit, nulla nec faucibus
-              venenatis, quam mi convallis justo, id dictum odio libero non
-              augue. Sed lacinia ligula vel congue semper. Fusce porta augue a
-              ante rhoncus sagittis. Duis ac ultricies arcu.
+              eget tincidunt elit eleifend.
+              <br />
+              &emsp; Sed at rutrum dui. Ut id tristique magna. Praesent libero
+              dolor, iaculis et euismod id, faucibus non purus. Nullam ac arcu
+              purus. Sed vel efficitur mauris. Sed vel ante in quam hendrerit
+              consequat at id dolor. Aliquam rutrum lorem sed nisl molestie, ut
+              cursus nunc vulputate. Morbi congue ipsum erat, in vehicula justo
+              dignissim nec.
             </p>
           </section>
           <section className="book-page">
+            <span>5</span>
             <p>
-              Sed at rutrum dui. Ut id tristique magna. Praesent libero dolor,
-              iaculis et euismod id, faucibus non purus. Nullam ac arcu purus.
-              Cras ultricies risus ut aliquam placerat. Sed vel efficitur
+              &emsp; Sed at rutrum dui. Ut id tristique magna. Praesent libero
+              dolor, iaculis et euismod id, faucibus non purus. Nullam ac arcu
+              purus. Cras ultricies risus ut aliquam placerat. Sed vel efficitur
               mauris. Sed vel ante in quam hendrerit consequat at id dolor.
               Aliquam rutrum lorem sed nisl molestie, ut cursus nunc vulputate.
               Morbi congue ipsum erat, in vehicula justo dignissim nec.
               Suspendisse aliquam risus vel eros lobortis, sed condimentum sem
-              vehicula. Nunc molestie nisl id turpis rutrum sollicitudin.
-              <strong>The End</strong>
+              vehicula.
+              <br />
+              &emsp; Nunc euismod nisi ut vulputate pulvinar. Vivamus consequat
+              sed metus vitae suscipit. Vivamus non orci sit amet purus
+              porttitor elementum non nec arcu. Curabitur placerat consequat
+              justo. Curabitur vel eros vestibulum, efficitur arcu tempor,
+              dictum lectus.
             </p>
           </section>
         </div>

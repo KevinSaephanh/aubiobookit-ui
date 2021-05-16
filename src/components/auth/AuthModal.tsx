@@ -2,8 +2,8 @@ import { FC, useContext } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { AuthContext } from "../../store/providers/AuthProvider";
 import { useForm } from "react-hook-form";
-import InputUtils from "../../utils/InputUtils";
-import IFormInput from "../../models/IAuth";
+import InputUtils from "../../shared/utils/InputUtils";
+import IFormInput from "../../shared/models/IAuth";
 import "./AuthModal.scss";
 
 interface ModalProps {
