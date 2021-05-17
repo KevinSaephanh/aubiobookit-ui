@@ -1,6 +1,6 @@
 .book-pages {
-  height: 500px;
-  width: 750px;
+  height: 400px;
+  width: 650px;
   perspective: 960px;
   -ms-user-select: none;
   -moz-user-select: none;
@@ -26,42 +26,32 @@
   width: 50%;
   flex-direction: column;
 
-  &:nth-child(even) {
-    span {
-      float: right;
-    }
-  }
-
   &:nth-child(odd) {
     border-right: 2px solid rgba(0, 0, 0, 0.123);
-
-    span {
-      float: left;
-    }
   }
 
   span {
-    margin-top: -30px;
+    font-size: 13px;
   }
 
   p {
-    font-size: 14px;
+    font-size: 13px;
     font-family: "Cormorant Garamond", serif;
     width: 85%;
     height: 80%;
-    line-height: 25px;
   }
 }
 
 .title-page {
-  h3 {
+  h4 {
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     font-weight: bolder;
-    letter-spacing: 0.8px;
+    font-size: 20px;
   }
 
   h5 {
     font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
   }
 }
 
@@ -71,12 +61,6 @@
   h5 {
     padding-top: 30px;
   }
-}
-
-.contents-list {
-  list-style-type: none;
-  height: 100%;
-  width: 100%;
 }
 
 .chapter-header {
@@ -92,9 +76,15 @@
   }
 }
 
+.contents-list {
+  list-style-type: none;
+  height: 100%;
+  width: 100%;
+}
+
 .content-item {
   td {
-    padding: 5px 0 !important;
+    padding: 3px 0 !important;
     border: none !important;
 
     &:first-child {
@@ -103,11 +93,11 @@
   }
 
   .content-item-chapter {
-    width: 20%;
+    width: 15%;
   }
 
   .content-item-page {
-    width: 20%;
+    width: 15%;
     text-align: right;
     padding-right: 25px !important;
   }
@@ -122,13 +112,12 @@
   }
 
   .title-page {
-    h3 {
-      font-size: 18px;
-      letter-spacing: 0.5px;
+    h4 {
+      font-size: 12px;
     }
 
     h5 {
-      font-size: 13px;
+      font-size: 12px;
     }
   }
 
@@ -138,9 +127,14 @@
     }
   }
 
+  .content-item {
+    td {
+      font-size: 11px !important;
+    }
+  }
+
   .book-page {
     span {
-      margin-top: -15px;
       font-size: 9px;
     }
 

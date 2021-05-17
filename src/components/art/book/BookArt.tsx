@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { contents } from "./BookInfo";
+import { AUTHOR, BOOK_TITLE, contents } from "./BookInfo";
 // @ts-ignore
 import FlippingPages from "flipping-pages";
 import "flipping-pages/FlippingPages.css";
@@ -19,7 +19,7 @@ const BookArt = () => {
   };
 
   return (
-    <div>
+    <div className="book-art">
       <FlippingPages
         className="book-pages"
         direction="horizontal"
@@ -30,8 +30,8 @@ const BookArt = () => {
         <div className="book-page-wrapper">
           <section className="book-page" />
           <section className="book-page title-page">
-            <h3>Title Here</h3>
-            <h5>By John Doe</h5>
+            <h4>{BOOK_TITLE}</h4>
+            <h5>By {AUTHOR}</h5>
           </section>
         </div>
         <div className="book-page-wrapper">
@@ -55,7 +55,6 @@ const BookArt = () => {
           </section>
           <section className="book-page">
             <p>
-              <span>3</span>
               <div className="chapter-header">
                 <h5>{contents[0].ch}</h5>
                 <h6>{contents[0].title}</h6>
@@ -68,21 +67,21 @@ const BookArt = () => {
               &emsp; Nam lorem elit, sagittis pellentesque urna nec, malesuada
               dictum ex. Curabitur in lectus ullamcorper nibh rhoncus porta.
               Proin eu ultrices enim. Pellentesque eget facilisis urna. Proin
-              ultricies viverra odio, quis ullamcorper enim accumsan sed.
+              ultricies viverra odio, quis ullamcorper enim accumsan sed quam
+              hendrerit.
             </p>
+            <span>3</span>
           </section>
         </div>
         <div className="book-page-wrapper">
           <section className="book-page">
-            <span>4</span>
             <p>
               &emsp; Pellentesque id dui quis velit pellentesque elementum nec
               ac neque. Fusce quis dapibus sapien, ut bibendum ligula. Ut vel
               arcu vel metus scelerisque malesuada vel quis felis. In faucibus
               ligula a blandit rhoncus. Donec at nisi sodales, rhoncus enim ac,
               consectetur erat. Mauris ipsum dolor, pulvinar in eros sit amet,
-              malesuada egestas lectus. Duis dictum nisi ut ante consectetur,
-              eget tincidunt elit eleifend.
+              malesuada egestas lectus.
               <br />
               &emsp; Sed at rutrum dui. Ut id tristique magna. Praesent libero
               dolor, iaculis et euismod id, faucibus non purus. Nullam ac arcu
@@ -91,9 +90,9 @@ const BookArt = () => {
               cursus nunc vulputate. Morbi congue ipsum erat, in vehicula justo
               dignissim nec.
             </p>
+            <span>4</span>
           </section>
           <section className="book-page">
-            <span>5</span>
             <p>
               &emsp; Sed at rutrum dui. Ut id tristique magna. Praesent libero
               dolor, iaculis et euismod id, faucibus non purus. Nullam ac arcu
@@ -101,8 +100,6 @@ const BookArt = () => {
               mauris. Sed vel ante in quam hendrerit consequat at id dolor.
               Aliquam rutrum lorem sed nisl molestie, ut cursus nunc vulputate.
               Morbi congue ipsum erat, in vehicula justo dignissim nec.
-              Suspendisse aliquam risus vel eros lobortis, sed condimentum sem
-              vehicula.
               <br />
               &emsp; Nunc euismod nisi ut vulputate pulvinar. Vivamus consequat
               sed metus vitae suscipit. Vivamus non orci sit amet purus
@@ -110,6 +107,7 @@ const BookArt = () => {
               justo. Curabitur vel eros vestibulum, efficitur arcu tempor,
               dictum lectus.
             </p>
+            <span>5</span>
           </section>
         </div>
       </FlippingPages>
