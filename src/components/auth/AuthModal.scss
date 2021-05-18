@@ -1,6 +1,9 @@
+@use "../../master" as global;
+
 .modal-title {
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-family: global.$font-link;
 }
 
 .modal-body {

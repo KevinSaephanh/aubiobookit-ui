@@ -1,5 +1,14 @@
 $desc-color: rgba(245, 245, 245, 0.836);
 $success-color: rgb(14, 180, 14);
+
+// Fonts
+$font-desc: "Ibarra Real Nova", serif;
+$font-title: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+$font-alt-title: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+$font-link: "EB Garamond", serif;
+$font-btn: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+// Flexbox
 @mixin flex-column {
   display: flex;
   flex-direction: column;

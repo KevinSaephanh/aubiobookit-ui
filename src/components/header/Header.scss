@@ -1,4 +1,7 @@
+@use "../../master" as global;
+
 .navbar {
+  font-family: global.$font-link;
   padding-right: 25px !important;
   padding-left: 25px !important;
 }

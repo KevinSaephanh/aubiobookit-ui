@@ -1,3 +1,5 @@
+@use "./master" as global;
+
 .container-fluid {
   margin: 0 !important;
   padding: 0 !important;
@@ -8,4 +10,11 @@
 .main-content {
   width: 100%;
   margin: 25px 0;
+}
+
+button {
+  font-family: global.$font-btn !important;
+  font-weight: bold !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.5px;
 }

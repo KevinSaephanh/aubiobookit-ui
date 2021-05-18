@@ -8,6 +8,10 @@
   @include global.flex-column;
   text-align: center;
 
+  h3 {
+    font-family: global.$font-title;
+  }
+
   ul {
     display: flex;
   }
@@ -18,10 +22,41 @@
     width: 60%;
     max-width: 350px;
     margin: 15px 25px;
+    border: none;
+    background-color: transparent;
+
+    .card-title {
+      color: rgb(50, 191, 238);
+      font-size: 1.3rem;
+      font-family: global.$font-title;
+    }
+
+    .card-body {
+      font-family: global.$font-desc;
+      font-weight: bold;
+    }
   }
 
   img {
     height: 150px;
     width: 200px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .features {
+    h3 {
+      padding: 15px 0;
+    }
+
+    ul {
+      @include global.flex-column;
+      padding: 0;
+    }
+  }
+
+  .card {
+    width: 90%;
+    margin: 0 auto;
   }
 }

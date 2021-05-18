@@ -1,3 +1,5 @@
+@use "../../../master" as global;
+
 .book-pages {
   height: 400px;
   width: 650px;
@@ -36,7 +38,7 @@
 
   p {
     font-size: 13px;
-    font-family: "Cormorant Garamond", serif;
+    font-family: global.$font-desc;
     width: 85%;
     height: 80%;
   }
@@ -44,19 +46,20 @@
 
 .title-page {
   h4 {
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-family: global.$font-alt-title;
     font-weight: bolder;
     font-size: 20px;
   }
 
   h5 {
-    font-family: "Times New Roman", Times, serif;
+    font-family: global.$font-desc;
     font-size: 18px;
   }
 }
 
 .contents {
   display: block;
+  font-family: global.$font-alt-title;
 
   h5 {
     padding-top: 30px;
