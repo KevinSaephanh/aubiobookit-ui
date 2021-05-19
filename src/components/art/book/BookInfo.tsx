@@ -4,7 +4,7 @@ interface IChapter {
   page: number;
 }
 
-export const BOOK_TITLE = "Vivi is More Human than You";
+export const BOOK_TITLE = "Vivi is Human";
 export const AUTHOR = "Kevin Saephanh";
 
 // Array of chapters for table of contents

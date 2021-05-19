@@ -1,9 +1,10 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { AuthContext } from "../../store/providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import InputUtils from "../../shared/utils/InputUtils";
 import IFormInput from "../../shared/models/IAuth";
+import * as Constants from "../../shared/constants/Constants";
 import "./AuthModal.scss";
 
 interface ModalProps {
@@ -21,6 +22,7 @@ const AuthModal: FC<ModalProps> = (props) => {
   } = useForm<IFormInput>();
   const { modalType } = props;
   const auth = useContext(AuthContext);
+  const authMessage = Constants.SIGNUP_SUCCESS_MESSAGE;
 
   const getSignupForm = () => {
     return (
@@ -85,19 +87,32 @@ const AuthModal: FC<ModalProps> = (props) => {
   };
 
   const onSubmit = (data: IFormInput) => {
-    console.log("DATA: " + JSON.stringify(data));
-    console.log("VALID: " + InputUtils.isValidPassword(data.password));
+    const { username, email, password, confirmPassword } = data;
     if (modalType === "login") {
       const credentials: IFormInput = {
-        username: data.username,
-        password: data.password,
+        username,
+        password,
       };
       auth.handleLogin(credentials);
       resetForm();
+      closeModal();
     }
 
     if (modalType === "signup") {
+      const credentials: IFormInput = {
+        username,
+        email,
+        password,
+        confirmPassword,
+      };
       resetForm();
+
+      // Toggle signup success message on a timer
+      const authMessage = document.querySelector(".auth-message");
+      authMessage?.classList.toggle("active");
+      setTimeout(() => {
+        authMessage?.classList.toggle("active");
+      }, 2000);
     }
   };
 
@@ -118,6 +133,7 @@ const AuthModal: FC<ModalProps> = (props) => {
           {modalType}
         </Modal.Title>
       </Modal.Header>
+      <span className="auth-message">{authMessage}</span>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
           {modalType === "login" ? getLoginForm() : getSignupForm()}

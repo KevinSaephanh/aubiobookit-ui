@@ -2,16 +2,13 @@ import { FC, useContext, useState } from "react";
 import { Navbar, Nav, NavDropdown, Dropdown } from "react-bootstrap";
 import AuthModal from "../auth/AuthModal";
 import { AuthContext } from "./../../store/providers/AuthProvider";
-import Image from "../../assets/defaultProfilePic.png";
 import "./Header.scss";
 
 const Header: FC = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalType, setModalType] = useState("");
   const auth = useContext(AuthContext);
-  const { isAuth } = auth.authState;
-
-  console.log("IS AUTH? : " + isAuth);
+  const { isAuth, profile, user } = auth.authState;
 
   const setModalContent = (authType: string) => {
     setModalShow(true);
@@ -23,11 +20,11 @@ const Header: FC = () => {
       <Nav className="justify-content-center">
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            <img src={Image} alt="" />
+            <img src={profile.pic} alt="" />
           </Dropdown.Toggle>
 
           <Dropdown.Menu className="dropdown-menu-right">
-            <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+            <Dropdown.Item href={`/profile/${user.id}`}>Profile</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
             <NavDropdown.Divider />
             <Dropdown.Item href="" onClick={() => logout()}>

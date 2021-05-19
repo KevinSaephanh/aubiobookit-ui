@@ -21,7 +21,8 @@ export const signup_failure = () => {
 export const login_success = (data: any) => {
   return {
     type: AuthActions.LOGIN_SUCCESS,
-    user: data,
+    user: data.user,
+    profile: data.profile,
   };
 };
 

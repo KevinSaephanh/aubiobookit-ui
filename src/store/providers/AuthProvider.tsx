@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import useFetch from "../../shared/hooks/useFetch";
+import { mockProfile, mockUser } from "../../shared/mock/MockUser";
 import IFormInput from "../../shared/models/IAuth";
 import * as ACTIONS from "../actions/authActions";
 import { AuthReducer } from "../reducers/authReducer";
@@ -24,7 +25,14 @@ export const AuthProvider = ({ children }: any) => {
     // Call login endpoint and validate status code/response
     // If success, dispatch login_success
     // Else dispatch login failure (logout)
-    dispatch(ACTIONS.login_success(data));
+
+    // dummyData
+    const res = {
+      user: mockUser,
+      profile: mockProfile,
+    };
+    console.log(res);
+    dispatch(ACTIONS.login_success(res));
   };
 
   const handleLogout = (): void => {

@@ -14,3 +14,22 @@
 .form-label {
   font-weight: bold;
 }
+
+.auth-message {
+  display: none;
+
+  &.active {
+    display: block;
+    color: global.$success-color;
+    text-align: center;
+    padding-top: 12px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .auth-message {
+    font-size: 12px;
+  }
+}

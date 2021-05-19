@@ -1,14 +1,17 @@
 import IUser from "./../../shared/models/IUser";
 import { AuthActions } from "../actions/actionTypes";
+import IProfile from "../../shared/models/IProfile";
 
 interface IAuthState {
   user: IUser;
+  profile: IProfile;
   isAuth: boolean;
 }
 
 // Initial state for auth
 export const authState = {
   user: {} as IUser,
+  profile: {} as IProfile,
   isAuth: false,
 } as IAuthState;
 
@@ -28,6 +31,7 @@ export const AuthReducer = (state = authState, action: any) => {
       return {
         ...state,
         user: action.user,
+        profile: action.profile,
         isAuth: true,
       };
     case AuthActions.LOGIN_FAILURE:
@@ -35,6 +39,7 @@ export const AuthReducer = (state = authState, action: any) => {
       return {
         ...state,
         user: {} as IUser,
+        profile: {} as IProfile,
         isAuth: false,
       };
     default:
