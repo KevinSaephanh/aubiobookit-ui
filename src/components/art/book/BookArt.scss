@@ -34,6 +34,7 @@
 
   span {
     font-size: 13px;
+    margin-bottom: 15px;
   }
 
   p {
@@ -67,6 +68,8 @@
 }
 
 .chapter-header {
+  margin-top: 30px;
+
   h5,
   h6 {
     font-weight: bold;
@@ -139,6 +142,7 @@
   .book-page {
     span {
       font-size: 9px;
+      margin-bottom: 5px;
     }
 
     p {
@@ -163,13 +167,15 @@
   }
 
   .chapter-header {
+    margin-top: 10px;
+
     h5 {
-      font-size: 15px;
+      font-size: 14px;
       margin-bottom: 2px;
     }
 
     h6 {
-      font-size: 14px;
+      font-size: 13px;
       padding-bottom: 15px;
     }
   }

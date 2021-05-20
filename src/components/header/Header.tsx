@@ -20,11 +20,13 @@ const Header: FC = () => {
       <Nav className="justify-content-center">
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            <img src={profile.pic} alt="" />
+            <img src={localStorage.getItem("pic") as string} alt="" />
           </Dropdown.Toggle>
 
           <Dropdown.Menu className="dropdown-menu-right">
-            <Dropdown.Item href={`/profile/${user.id}`}>Profile</Dropdown.Item>
+            <Dropdown.Item href={`/profile/${localStorage.getItem("uid")}`}>
+              Profile
+            </Dropdown.Item>
             <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
             <NavDropdown.Divider />
             <Dropdown.Item href="" onClick={() => logout()}>
@@ -64,7 +66,7 @@ const Header: FC = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto" />
-          {isAuth ? getAuthNavs() : getDefaultNavs()}
+          {localStorage.getItem("username") ? getAuthNavs() : getDefaultNavs()}
         </Navbar.Collapse>
       </Navbar>
 

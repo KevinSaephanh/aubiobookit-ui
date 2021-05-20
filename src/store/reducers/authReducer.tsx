@@ -1,6 +1,7 @@
 import IUser from "./../../shared/models/IUser";
 import { AuthActions } from "../actions/actionTypes";
 import IProfile from "../../shared/models/IProfile";
+import axios from "axios";
 
 interface IAuthState {
   user: IUser;
@@ -28,6 +29,11 @@ export const AuthReducer = (state = authState, action: any) => {
         isAuth: false,
       };
     case AuthActions.LOGIN_SUCCESS:
+      // Store user data in localstorage and token in cookie
+      localStorage.setItem("username", action.user.username);
+      localStorage.setItem("uid", action.user.id);
+      localStorage.setItem("pic", action.profile.pic);
+
       return {
         ...state,
         user: action.user,
@@ -36,6 +42,13 @@ export const AuthReducer = (state = authState, action: any) => {
       };
     case AuthActions.LOGIN_FAILURE:
     case AuthActions.LOGOUT:
+      // Delete credentials from localstorage and token from cookie
+      localStorage.removeItem("username");
+      localStorage.removeItem("uid");
+      localStorage.removeItem("pic");
+
+      delete axios.defaults.headers.common["X-CSRF-Token"];
+
       return {
         ...state,
         user: {} as IUser,

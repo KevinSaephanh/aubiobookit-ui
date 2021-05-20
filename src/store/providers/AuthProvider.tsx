@@ -1,10 +1,10 @@
 import { createContext, useReducer } from "react";
-import useFetch from "../../shared/hooks/useFetch";
 import { mockProfile, mockUser } from "../../shared/mock/MockUser";
-import IFormInput from "../../shared/models/IAuth";
 import * as ACTIONS from "../actions/authActions";
 import { AuthReducer } from "../reducers/authReducer";
 import { authState } from "./../reducers/authReducer";
+import IFormInput from "../../shared/models/IAuth";
+import useAxios from "../../shared/hooks/useAxios";
 
 export const AuthContext = createContext({
   authState: authState,
@@ -15,7 +15,7 @@ export const AuthContext = createContext({
 
 export const AuthProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AuthReducer, authState);
-  const { data, loading } = useFetch("");
+  const { data, loading } = useAxios("");
 
   const handleSignup = (): void => {
     dispatch(ACTIONS.signup_success());

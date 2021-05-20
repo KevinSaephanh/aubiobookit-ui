@@ -54,11 +54,11 @@ const BookArt = () => {
             </ul>
           </section>
           <section className="book-page">
+            <div className="chapter-header">
+              <h5>{contents[0].ch}</h5>
+              <h6>{contents[0].title}</h6>
+            </div>
             <p>
-              <div className="chapter-header">
-                <h5>{contents[0].ch}</h5>
-                <h6>{contents[0].title}</h6>
-              </div>
               &emsp; Sed at rutrum dui. Ut id tristique magna. Praesent libero
               dolor, iaculis et euismod id, faucibus non purus. Nullam ac arcu
               purus. Cras ultricies risus ut aliquam placerat. Sed vel efficitur
