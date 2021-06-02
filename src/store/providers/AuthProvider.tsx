@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { mockProfile, mockUser } from "../../shared/mock/MockUser";
+import { mockUser } from "../../shared/mock/MockUser";
 import * as ACTIONS from "../actions/authActions";
 import { AuthReducer } from "../reducers/authReducer";
 import { authState } from "./../reducers/authReducer";
@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }: any) => {
     // dummyData
     const res = {
       user: mockUser,
-      profile: mockProfile,
     };
     console.log(res);
     dispatch(ACTIONS.login_success(res));

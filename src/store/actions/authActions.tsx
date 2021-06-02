@@ -22,7 +22,6 @@ export const login_success = (data: any) => {
   return {
     type: AuthActions.LOGIN_SUCCESS,
     user: data.user,
-    profile: data.profile,
   };
 };
 

@@ -8,7 +8,8 @@ const Header: FC = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalType, setModalType] = useState("");
   const auth = useContext(AuthContext);
-  const { isAuth, profile, user } = auth.authState;
+  const user = JSON.parse(localStorage.getItem("user") as string);
+  console.log(user);
 
   const setModalContent = (authType: string) => {
     setModalShow(true);
@@ -20,7 +21,7 @@ const Header: FC = () => {
       <Nav className="justify-content-center">
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            <img src={localStorage.getItem("pic") as string} alt="" />
+            {/* <img src={user?.profile?.pic} alt="" /> */}
           </Dropdown.Toggle>
 
           <Dropdown.Menu className="dropdown-menu-right">

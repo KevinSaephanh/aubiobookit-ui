@@ -1,7 +1,12 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+import { AuthContext } from "../../store/providers/AuthProvider";
 
 const Profile: FC = () => {
-  return <h1>HELLO PROFILE</h1>;
+  const auth = useContext(AuthContext);
+
+  console.log(auth);
+
+  return <div className="main-content profile">HELLO PROFILE</div>;
 };
 
 export default Profile;

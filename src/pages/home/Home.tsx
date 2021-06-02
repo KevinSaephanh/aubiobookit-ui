@@ -6,8 +6,6 @@ import "./Home.scss";
 
 const Home: FC = () => {
   const getFeatures = () => {
-    // Columns of items
-    // Picture, title, description
     return (
       <ul>
         {features.map((feature, key) => {
