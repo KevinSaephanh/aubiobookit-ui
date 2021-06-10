@@ -6,8 +6,8 @@ import Header from "./components/header/Header";
 import Routes from "./routes";
 import { AuthProvider } from "./store/providers/AuthProvider";
 import useAxios from "./shared/hooks/useAxios";
-import "./App.scss";
 import axios from "axios";
+import "./App.scss";
 
 function App() {
   const { data } = useAxios(
@@ -17,8 +17,8 @@ function App() {
   useEffect(() => {
     // Testing httpOnly cookie
     axios.defaults.headers.common["X-CSRF-Token"] = "asdf";
-    console.log(axios.defaults.headers);
-    console.log(data);
+    // console.log(axios.defaults.headers);
+    // console.log(data);
   }, []);
 
   return (

@@ -8,8 +8,7 @@ const Header: FC = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalType, setModalType] = useState("");
   const auth = useContext(AuthContext);
-  const user = JSON.parse(localStorage.getItem("user") as string);
-  console.log(user);
+  console.log(auth.authState);
 
   const setModalContent = (authType: string) => {
     setModalShow(true);
@@ -21,11 +20,11 @@ const Header: FC = () => {
       <Nav className="justify-content-center">
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            {/* <img src={user?.profile?.pic} alt="" /> */}
+            <img src={auth.authState.user?.profilePic} alt="" />
           </Dropdown.Toggle>
 
           <Dropdown.Menu className="dropdown-menu-right">
-            <Dropdown.Item href={`/profile/${localStorage.getItem("uid")}`}>
+            <Dropdown.Item href={`/profile/${auth.authState.user?.id}`}>
               Profile
             </Dropdown.Item>
             <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
@@ -67,7 +66,7 @@ const Header: FC = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto" />
-          {localStorage.getItem("username") ? getAuthNavs() : getDefaultNavs()}
+          {auth.authState.user?.username ? getAuthNavs() : getDefaultNavs()}
         </Navbar.Collapse>
       </Navbar>
 
