@@ -1,1 +1,17 @@
 @use "../../master" as global;
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px;
+}
+
+.profile-left {
+  width: 300px;
+}
+
+.profile-right {
+  width: 70%;
+  margin-left: 35px;
+  margin-right: auto;
+}
